@@ -1,9 +1,6 @@
 libwrapper: export RDBASE=../rdkit
 libwrapper: export RDLIB=../rdkit/lib/
-libwrapper: export LD_LIBRARY_PATH=../rdkit/lib/
 
-main: export RDBASE=../rdkit
-main: export RDLIB=../rdkit/lib/
 main: export LD_LIBRARY_PATH=../rdkit/lib/
 
 libwrapper:
@@ -13,3 +10,6 @@ main: libwrapper
 	clang -O3 main.c -o main -L. -lwrapper
 	# run main as LD_LIBRARY_PATH=.:../rdkit/lib ./main
 	# note: need to have previously built rdkit from source via their cmake.
+
+clean:
+	rm -f libwrapper.so main
