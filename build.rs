@@ -14,5 +14,7 @@ fn main() {
         .file("src/wrapper.cc")
         .include("./rdkit/Code")
         .cpp(true)
+        .shared_flag(true)
+        .pic(true)
         .compile("libwrapper.a");
 }
