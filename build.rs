@@ -1,20 +1,11 @@
-extern crate cc;
-
 fn main() {
-    // Note: setup.sh should be run to download rdkit.
+    // The wrapper should first be built via `make wrapper` in the wrapper dir.
 
-    let dst = cmake::Config::new("rdkit")
-        .generator("Unix Makefiles")
-        .define("RDK_BUILD_PYTHON_WRAPPERS", "OFF")
-        .build();
-    println!("cargo:rustc-link-search=native={}/build/lib", dst.display());
-    println!("cargo:rustc-link-lib=RDKitSmilesParse");
+    println!("cargo:rustc-link-search=wrapper");
+    println!("cargo:rustc-link-lib=static=wrapper");
 
-    cc::Build::new()
-        .file("src/wrapper.cc")
-        .include("./rdkit/Code")
-        .cpp(true)
-        .shared_flag(true)
-        .pic(true)
-        .compile("libwrapper.a");
+    println!("cargo:rustc-link-search=rdkit/lib");
+    println!("cargo:rustc-link-lib=static=RDKitSmilesParse_static");
+
+    println!("cargo:rustc-link-lib=stdc++");
 }

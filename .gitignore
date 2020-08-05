@@ -1,4 +1,4 @@
 /target
-rdkit
-src/main
-src/libwrapper.so
+/wrapper/libwrapper.a
+/wrapper/libwrapper.so
+/wrapper/main

@@ -1,13 +1,13 @@
 extern crate libc;
 
-#[link(name="wrapper", kind="dylib")]
+#[link(name="wrapper", kind="static")]
 extern {
     fn in_orgo_subset(input: libc::c_int) -> bool;
 }
 
 fn main() {
-  for i in 0..10 {
-    println!("in_orgo_subset({}): {}", i, unsafe {
+  for i in 1..10 {
+    println!("inOrganicSubset({}): {}", i, unsafe {
         in_orgo_subset(i)
     });
   }
